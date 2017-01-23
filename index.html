@@ -103,7 +103,7 @@
                         document.getElementById("exec").innerText = (req.responseText);
                     }
                 }
-                req.open('POST', 'http://localhost:5000');
+                req.open('POST', 'http://2a8fbaa8.ngrok.io');
                 req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 req.send('code=' + encodeURIComponent(window.firepad.getText()));
             }
