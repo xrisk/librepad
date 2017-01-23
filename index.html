@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <!-- CodeMirror -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+    <script src="python.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Firepad -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+    <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body,
+        .firepad,
+        #firepad,
+        .workspace,
+        #exec {
+            height: 100%;
+            width: 100%
+        }
+        
+        .workspace,
+        #firepad,
+        #exec {
+            position: absolute;
+        }
+        
+        #exec {
+            left: 50%;
+        }
+        
+        #firepad,
+        #exec {
+            width: 50%;
+        }
+        
+        #exec {
+            background-color: orange;
+            height: 100%;
+        }
+        
+        body {
+            font-size: 14px;
+        }
+        
+        .firepad {
+            background-color: rgb(29, 33, 38);
+            font-family: Roboto Mono, monospace;
+        }
+        
+        div.CodeMirror.CodeMirror-wrap,
+        #exec {
+            font-family: 'Roboto Mono', Menlo, 'Ubuntu Mono', Monaco, Consolas, 'source-code-pro', monospace;
+            font-size: 14px;
+            line-height: 17px;
+            box-shadow: 0 0 0 0 #000;
+        }
+        /* Note: CodeMirror applies its own styles which can be customized in the same way.
+        To apply a background to the entire editor, we need to also apply it to CodeMirror. */
+        
+        .firepad .CodeMirror {
+            font-family: Roboto Mono, monospace;
+            background-color: rgb(29, 33, 38);
+            padding: 10px;
+        }
+        
+        button {
+            position: fixed;
+            right: 0;
+        }
+        
+        #exec {
+            background-color: antiquewhite;
+            padding: 10px;
+            line-height: 20px;
+        }
+        
+        a.powered-by-firepad {
+            display: none;
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <div class="workspace">
+        <div id="firepad"></div>
+        <div id="exec"></div>
+        <button onclick="submit()"> Submit </button>
+        <script>
+            function submit() {
+                var req = new XMLHttpRequest();
+                req.onreadystatechange = function() {
+                    if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
+                        document.getElementById("exec").innerText = (req.responseText);
+                    }
+                }
+                req.open('POST', 'http://localhost:5000');
+                req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                req.send('code=' + encodeURIComponent(window.firepad.getText()));
+            }
+
+            function init() {
+                // Initialize Firebase.
+                // TODO: replace with your Firebase project configuration.
+                var config = {
+                    apiKey: "AIzaSyABIo2mnDcU5-Zo8a-jI38yv6cdQjhNMvY",
+                    authDomain: "freepad-a9bc1.firebaseapp.com",
+                    databaseURL: "https://freepad-a9bc1.firebaseio.com",
+                    storageBucket: "freepad-a9bc1.appspot.com",
+                    messagingSenderId: "331917331391"
+                };
+                firebase.initializeApp(config);
+                // Get Firebase Database reference.
+                var firepadRef = firebase.database().ref();
+                // Create CodeMirror (with lineWrapping on).
+                var codeMirror = CodeMirror(document.getElementById('firepad'), {
+                    lineWrapping: true,
+                    theme: 'monokai',
+                    mode: 'python'
+                });
+                // Create Firepad (with rich text toolbar and shortcuts enabled).
+                var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+                    // richTextShortcuts: true,
+                    // richTextToolbar: true,
+                    defaultText: 'Hello, World!'
+                });
+                window.firepad = firepad;
+            }
+        </script>
+    </div>
+</body>
+
+</html>
