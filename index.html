@@ -11,6 +11,7 @@
     <!-- Firepad -->
     <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
     <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <style>
         html,
         body {
@@ -73,9 +74,17 @@
             padding: 10px;
         }
         
-        button {
+        button.submit {
             position: fixed;
             right: 0;
+        }
+        
+        #name-pls {
+            position: fixed;
+            z-index: 100;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
         }
         
         #exec {
@@ -91,10 +100,11 @@
 </head>
 
 <body onload="init()">
+    
     <div class="workspace">
         <div id="firepad"></div>
         <div id="exec"></div>
-        <button onclick="submit()"> Submit </button>
+        <button onclick="submit()" class="submit"> Submit </button>
         <script>
             function submit() {
                 var req = new XMLHttpRequest();
@@ -103,14 +113,20 @@
                         document.getElementById("exec").innerText = (req.responseText);
                     }
                 }
-                req.open('POST', 'https://2a8fbaa8.ngrok.io');
+                req.open('POST', 'https://secure-shelf-72004.herokuapp.com/');
                 req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 req.send('code=' + encodeURIComponent(window.firepad.getText()));
             }
 
-            function init() {
-                // Initialize Firebase.
-                // TODO: replace with your Firebase project configuration.
+            window.init = function() {
+
+                // var name = document.getElementById("name");
+                // var nameval = name.value;
+                // console.log(nameval);
+                // if (nameval === "")
+                //     return;
+                // document.body.removeChild(document.getElementById("name-pls"));
+
                 var config = {
                     apiKey: "AIzaSyABIo2mnDcU5-Zo8a-jI38yv6cdQjhNMvY",
                     authDomain: "freepad-a9bc1.firebaseapp.com",
@@ -118,25 +134,29 @@
                     storageBucket: "freepad-a9bc1.appspot.com",
                     messagingSenderId: "331917331391"
                 };
+
                 firebase.initializeApp(config);
-                // Get Firebase Database reference.
                 var firepadRef = firebase.database().ref();
-                // Create CodeMirror (with lineWrapping on).
                 var codeMirror = CodeMirror(document.getElementById('firepad'), {
                     lineWrapping: true,
                     theme: 'monokai',
                     mode: 'python'
                 });
-                // Create Firepad (with rich text toolbar and shortcuts enabled).
+
                 var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
-                    // richTextShortcuts: true,
-                    // richTextToolbar: true,
-                    defaultText: 'Hello, World!'
+                    defaultText: 'Hello, World!',
+                    // userId: nameval
                 });
+
+                window.firepadref = firepadRef;
                 window.firepad = firepad;
+                window.firebase = firebase;
+
+                firebase.database().ref('users/').on('value', function(e) {
+                    console.log(e.val());
+                });
             }
         </script>
-    </div>
 </body>
 
 </html>
