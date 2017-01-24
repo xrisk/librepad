@@ -21,6 +21,7 @@ html, body {
     box-sizing: border-box;
     overflow: scroll;
     flex-grow: 1;
+    max-width: 50%;
 }
 
 .firepad {
@@ -43,11 +44,6 @@ div.CodeMirror.CodeMirror-wrap, #exec {
     font-family: Roboto Mono, monospace;
     background-color: rgb(29, 33, 38);
     padding: 10px;
-}
-
-button.submit {
-    position: fixed;
-    right: 0;
 }
 
 #modal {
@@ -124,4 +120,26 @@ body {
     display: flex;
     flex-grow: 1;
 }
+
+#firepad {
+    display: flex;
+    flex-direction: column;
+}
+
+.firepad {
+    flex-grow: 1;
+}
+
+.chrome {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    margin: 10px;
+}
+
+button.submit {
+    margin-top: 5px;
+}
+
 

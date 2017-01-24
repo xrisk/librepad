@@ -18,13 +18,19 @@ function destroyModal() {
 }
 
 function submit() {
+
+    var dict = {
+        'text/x-python': 'python',
+        'text/x-c++src': 'c++',
+    };
     var req = new XMLHttpRequest();
+    var lang = document.getElementById("lang-select").value;
     req.onreadystatechange = function() {
         if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
             document.getElementById("exec").innerText = (req.responseText);
         }
     }
-    req.open('POST', 'https://secure-shelf-72004.herokuapp.com/');
+    req.open('POST', 'https://secure-shelf-72004.herokuapp.com/' + dict[lang]);
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     req.send('code=' + encodeURIComponent(window.firepad.getText()));
 }
@@ -54,6 +60,10 @@ function updateUserBar(data) {
     });
 }
 
+function changeMode() {
+    window.cm.setOption('mode', document.getElementById("lang-select").value);
+}
+
 window.init = function() {
 
     var config = {
@@ -79,6 +89,9 @@ window.init = function() {
         window.firepadready = true;
     })
 
+    document.getElementById("lang-select").onchange = changeMode;
+
+    window.cm = codeMirror;
     window.firepad = firepad;
     window.firebase = firebase;
 

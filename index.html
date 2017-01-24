@@ -4,7 +4,6 @@
 <head>
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
-    <script src="python.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
     <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
@@ -19,11 +18,19 @@
             <button onclick="destroyModal()" id="go-btn"> Go </button>
         </div>
     </div>
+    <div class="chrome">
+        <select id="lang-select">
+            <option value="text/x-python" selected>Python</option>
+            <option value="text/x-c++src">C++</option>
+        </select>
+        <button onclick="submit()" class="submit"> Submit </button>
+    </div>
     <div class="workspace">
         <div id="firepad"></div>
         <div id="exec"></div>
-        <button onclick="submit()" class="submit"> Submit </button>
     </div>
+    <script src="python.js"></script>
+    <script src="clike.js"></script>
     <script src="script.js"></script>
 </body>
 
