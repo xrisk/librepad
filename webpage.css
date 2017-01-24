@@ -1,0 +1,127 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Roboto';
+}
+
+html, body {
+    height: 100%;
+    width: 100%
+}
+
+#exec {
+    left: 50%;
+}
+
+#firepad, #exec {
+    box-sizing: border-box;
+    overflow: scroll;
+    flex-grow: 1;
+}
+
+.firepad {
+    background-color: rgb(29, 33, 38);
+    font-family: Roboto Mono, monospace;
+}
+
+div.CodeMirror.CodeMirror-wrap, #exec {
+    font-family: 'Roboto Mono', Menlo, 'Ubuntu Mono', Monaco, Consolas, 'source-code-pro', monospace;
+    font-size: 14px;
+    line-height: 17px;
+    box-shadow: 0 0 0 0 #000;
+}
+
+
+/* Note: CodeMirror applies its own styles which can be customized in the same way.
+    To apply a background to the entire editor, we need to also apply it to CodeMirror. */
+
+.firepad .CodeMirror {
+    font-family: Roboto Mono, monospace;
+    background-color: rgb(29, 33, 38);
+    padding: 10px;
+}
+
+button.submit {
+    position: fixed;
+    right: 0;
+}
+
+#modal {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(50, 54, 54, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#exec {
+    background-color: antiquewhite;
+    padding: 10px;
+    line-height: 20px;
+}
+
+a.powered-by-firepad {
+    display: none;
+}
+
+#name-field {
+    height: 35px;
+    box-sizing: border-box;
+    margin: -5px;
+    margin: 0;
+    margin-right: -4px;
+    border: 0;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 12px;
+    width: 200px;
+    outline: none;
+}
+
+#go-btn {
+    font-size: 14px;
+    color: white;
+    height: 35px;
+    /* line-height: 35px; */
+    width: 50px;
+    box-sizing: border-box;
+    background: linear-gradient(#26DBB8, #32CEAF);
+    border: 0;
+    position: relative;
+    right: 3px;
+    top: -1px;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#user-bar {
+    background-color: black;
+    color: white;
+    padding: 5px;
+}
+
+.user {
+    margin: 5px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.workspace {
+    display: flex;
+    flex-grow: 1;
+}
+
