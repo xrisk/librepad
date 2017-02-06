@@ -80,7 +80,8 @@ window.init = function() {
     var codeMirror = CodeMirror(document.getElementById('firepad'), {
         lineWrapping: true,
         theme: 'monokai',
-        mode: 'python'
+        mode: 'python',
+		lineNumbers: true,
     });
 
     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
