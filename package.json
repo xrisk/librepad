@@ -1,0 +1,19 @@
+{
+  "name": "librepad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "clike.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xrisk/librepad.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xrisk/librepad/issues"
+  },
+  "homepage": "https://github.com/xrisk/librepad#readme"
+}

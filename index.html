@@ -2,19 +2,18 @@
 <html>
 
 <head>
-    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
-    <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto" rel="stylesheet">
-    <link href="webpage.css" rel="stylesheet">
+    <title> Freepad </title>
+
+    <link rel="stylesheet" href="firepad-styles.css" />
+    <link rel="stylesheet" href="//cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Mono|Roboto">
+    <link rel="stylesheet" href="webpage.css" rel="stylesheet">
 </head>
 
 <body onload="init()">
     <div id="modal">
         <div>
-            <input type="text" id="name-field" placeholder="Steve"></input>
+            <input type="text" id="name-field" placeholder="Steve">
             <button onclick="destroyModal()" id="go-btn"> Go </button>
         </div>
     </div>
@@ -22,6 +21,8 @@
         <select id="lang-select">
             <option value="text/x-python" selected>Python</option>
             <option value="text/x-c++src">C++</option>
+            <option value="text/javascript">NodeJS</option>
+            <option value="text/x-sh">Bash</option>
         </select>
         <button onclick="submit()" class="submit"> Submit </button>
     </div>
@@ -29,9 +30,16 @@
         <div id="firepad"></div>
         <div id="exec"></div>
     </div>
+
+    <script src="//www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+    <script src="//cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
     <script src="python.js"></script>
     <script src="clike.js"></script>
+    <script src="javascript.js"></script>
+    <script src="shell.js"></script>
     <script src="script.js"></script>
+
 </body>
 
 </html>

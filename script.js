@@ -1,4 +1,3 @@
-
 function destroyModal() {
     var field = document.getElementById("name-field");
     if (field.value === "")
@@ -22,6 +21,8 @@ function submit() {
     var dict = {
         'text/x-python': 'python',
         'text/x-c++src': 'c++',
+        'text/javascript': 'js',
+        'text/x-sh': 'bash',
     };
     var req = new XMLHttpRequest();
     var lang = document.getElementById("lang-select").value;
@@ -29,8 +30,8 @@ function submit() {
         if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
             document.getElementById("exec").innerText = (req.responseText);
         }
-    }
-    req.open('POST', 'https://secure-shelf-72004.herokuapp.com/' + dict[lang]);
+    };
+    req.open('POST', 'http://kobato.unihedro.com:8000/' + dict[lang]);
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     req.send('code=' + encodeURIComponent(window.firepad.getText()));
 }
@@ -48,7 +49,7 @@ function updateUserBar(data) {
     var users = [];
     for (var user in data) {
         if (data.hasOwnProperty(user))
-            users.push([user, data[user]['color']]);
+            users.push([user, data[user].color]);
     }
     ubar.innerHTML = "";
     users.forEach(function(i) {
@@ -81,14 +82,14 @@ window.init = function() {
         lineWrapping: true,
         theme: 'monokai',
         mode: 'python',
-		lineNumbers: true,
+        lineNumbers: true,
     });
 
     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
 
     firepad.on('ready', function() {
         window.firepadready = true;
-    })
+    });
 
     document.getElementById("lang-select").onchange = changeMode;
 
@@ -96,4 +97,4 @@ window.init = function() {
     window.firepad = firepad;
     window.firebase = firebase;
 
-}
+};
