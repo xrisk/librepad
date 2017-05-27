@@ -68,12 +68,13 @@ function changeMode() {
 window.init = function() {
 
     var config = {
-        apiKey: "AIzaSyABIo2mnDcU5-Zo8a-jI38yv6cdQjhNMvY",
-        authDomain: "freepad-a9bc1.firebaseapp.com",
-        databaseURL: "https://freepad-a9bc1.firebaseio.com",
-        storageBucket: "freepad-a9bc1.appspot.com",
-        messagingSenderId: "331917331391"
-    };
+    apiKey: "AIzaSyAZZP8GGVYbDj0Aup3Sr82U1N7g1QJWbfY",
+    authDomain: "freepad-e8a2b.firebaseapp.com",
+    databaseURL: "https://freepad-e8a2b.firebaseio.com",
+    projectId: "freepad-e8a2b",
+    storageBucket: "freepad-e8a2b.appspot.com",
+    messagingSenderId: "108853684733"
+  };
 
     firebase.initializeApp(config);
     var firepadRef = firebase.database().ref();
