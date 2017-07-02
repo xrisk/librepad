@@ -20,8 +20,8 @@ function submit() {
 
     var dict = {
         'text/x-python': 'python',
-        'text/x-c++src': 'c++',
-        'text/javascript': 'js',
+        //'text/x-c++src': 'c++',
+        //'text/javascript': 'js',
         'text/x-sh': 'bash',
     };
     var req = new XMLHttpRequest();
@@ -31,7 +31,7 @@ function submit() {
             document.getElementById("exec").innerText = (req.responseText);
         }
     };
-    req.open('POST', 'https://kobato.unihedro.com:8000/' + dict[lang]);
+    req.open('POST', 'https://katana.rishav.tech:4000/' + dict[lang]);
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     req.send('code=' + encodeURIComponent(window.firepad.getText()));
 }
