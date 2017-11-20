@@ -31,7 +31,7 @@ function submit() {
             document.getElementById("exec").innerText = (req.responseText);
         }
     };
-    req.open('POST', 'https://runner.rishav.tech/' + dict[lang]);
+    req.open('POST', 'https://pad.rishav.tech/' + dict[lang]);
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     req.send('code=' + encodeURIComponent(window.firepad.getText()));
 }
