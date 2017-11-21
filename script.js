@@ -20,8 +20,8 @@ function submit() {
 
     var dict = {
         'text/x-python': 'python',
-        //'text/x-c++src': 'c++',
-        //'text/javascript': 'js',
+        'text/x-c++src': 'c++',
+        'text/javascript': 'js',
         'text/x-sh': 'bash',
     };
     var req = new XMLHttpRequest();
