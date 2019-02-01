@@ -5,13 +5,13 @@ function destroyModal() {
     if (window.firepadready) {
         window.firepad.setUserId(field.value);
     } else {
-        window.firepad.on('ready', function() {
+        window.firepad.on('ready', function () {
             window.firepad.setUserId(field.value);
         });
     }
     var a = document.getElementById("modal");
     a.parentNode.removeChild(a);
-    firebase.database().ref('users/').on('value', function(e) {
+    firebase.database().ref('users/').on('value', function (e) {
         updateUserBar(e.val());
     });
 }
@@ -26,7 +26,7 @@ function submit() {
     };
     var req = new XMLHttpRequest();
     var lang = document.getElementById("lang-select").value;
-    req.onreadystatechange = function() {
+    req.onreadystatechange = function () {
         if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
             document.getElementById("exec").innerText = (req.responseText);
         }
@@ -52,7 +52,7 @@ function updateUserBar(data) {
             users.push([user, data[user].color]);
     }
     ubar.innerHTML = "";
-    users.forEach(function(i) {
+    users.forEach(function (i) {
         var el = document.createElement("span");
         el.className = "user";
         el.style.color = i[1];
@@ -65,17 +65,16 @@ function changeMode() {
     window.cm.setOption('mode', document.getElementById("lang-select").value);
 }
 
-window.init = function() {
+window.init = function () {
 
     var config = {
-    apiKey: "AIzaSyAZZP8GGVYbDj0Aup3Sr82U1N7g1QJWbfY",
-    authDomain: "freepad-e8a2b.firebaseapp.com",
-    databaseURL: "https://freepad-e8a2b.firebaseio.com",
-    projectId: "freepad-e8a2b",
-    storageBucket: "freepad-e8a2b.appspot.com",
-    messagingSenderId: "108853684733"
-  };
-
+        apiKey: "AIzaSyCaeoS-mUI6JrRIbnUFytRop7-lPz0v4b0",
+        authDomain: "librepad.firebaseapp.com",
+        databaseURL: "https://librepad.firebaseio.com",
+        projectId: "librepad",
+        storageBucket: "librepad.appspot.com",
+        messagingSenderId: "742345228534"
+    };
     firebase.initializeApp(config);
     var firepadRef = firebase.database().ref();
 
@@ -88,7 +87,7 @@ window.init = function() {
 
     var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror);
 
-    firepad.on('ready', function() {
+    firepad.on('ready', function () {
         window.firepadready = true;
     });
 
